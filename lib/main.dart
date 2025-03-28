@@ -12,9 +12,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return MaterialApp(home: HomePage());
-    // **레이아웃 확인용 코드
-    return MaterialApp(home: StationListPage());
-    // return MaterialApp(home: SeatPage());
+    return MaterialApp(
+      theme: ThemeData(
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            textStyle: WidgetStateProperty.all(
+              TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            shape: WidgetStateProperty.all(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            ),
+            backgroundColor: WidgetStatePropertyAll(Colors.purple),
+            foregroundColor: WidgetStatePropertyAll(Colors.white),
+          ),
+        ),
+      ),
+      // home: HomePage(),
+      // home: StationListPage(),
+      home: SeatPage(),
+    );
   }
 }
