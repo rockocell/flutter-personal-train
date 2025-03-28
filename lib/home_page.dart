@@ -4,20 +4,22 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(Object context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(title: Text('기차 예매')),
 
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
               width: double.infinity,
-              height: 180,
+              height: 200,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(18),
+                borderRadius: BorderRadius.circular(20),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -25,19 +27,15 @@ class HomePage extends StatelessWidget {
                   selectStation('출발역'),
                   SizedBox(width: 40),
                   SizedBox(
-                    height: 48,
-
-                    child: VerticalDivider(
-                      color: Colors.black26,
-                      thickness: 2.0,
-                    ),
+                    height: 40,
+                    child: VerticalDivider(color: Colors.grey, thickness: 2.0),
                   ),
                   SizedBox(width: 40),
                   selectStation('도착역'),
                 ],
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 20),
             SizedBox(
               width: double.infinity,
               height: 50,
@@ -46,14 +44,14 @@ class HomePage extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.purple,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18),
+                    borderRadius: BorderRadius.circular(20),
                   ),
                 ),
                 child: Text(
                   '좌석 선택',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 16,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -69,8 +67,15 @@ class HomePage extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(string, style: TextStyle(fontSize: 15, color: Colors.grey[700])),
-        Text('선택', style: TextStyle(fontSize: 38)),
+        Text(
+          string,
+          style: TextStyle(
+            fontSize: 16,
+            color: Colors.grey,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text('선택', style: TextStyle(fontSize: 40)),
       ],
     );
   }
