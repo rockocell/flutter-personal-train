@@ -9,11 +9,15 @@ class SeatPage extends StatefulWidget {
     required this.selectedDeparture,
     required this.selectedArrival,
   });
+
   @override
   State<SeatPage> createState() => _SeatPageState();
 }
 
 class _SeatPageState extends State<SeatPage> {
+  int? selectedRowNum;
+  int? selectedColNum;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,15 +67,14 @@ class _SeatPageState extends State<SeatPage> {
                       textBox('D'),
                     ],
                   ),
-
                   ...List.generate(20, (index) {
-                    int seatNum = index + 1;
+                    int rowNum = index + 1;
                     return Padding(
                       padding:
-                          seatNum != 20
-                              ? EdgeInsets.only(bottom: 8)
-                              : EdgeInsets.only(),
-                      child: seatBoxRow(seatNum),
+                          rowNum != 20
+                              ? const EdgeInsets.only(bottom: 8)
+                              : EdgeInsets.zero,
+                      child: row(rowNum),
                     );
                   }),
                 ],
@@ -83,6 +86,9 @@ class _SeatPageState extends State<SeatPage> {
             child: SizedBox(
               height: 50,
               width: double.infinity,
+
+              /// 버튼
+              ///
               child: ElevatedButton(onPressed: () {}, child: Text('예매 하기')),
             ),
           ),
@@ -90,33 +96,6 @@ class _SeatPageState extends State<SeatPage> {
       ),
     );
   }
-
-  Row seatBoxRow(int seatNum) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        coloredBox(),
-        SizedBox(width: 4),
-        coloredBox(),
-        SizedBox(width: 4),
-        textBox('$seatNum'),
-        SizedBox(width: 4),
-        coloredBox(),
-        SizedBox(width: 4),
-        coloredBox(),
-      ],
-    );
-  }
-
-  Container coloredBox() => Container(
-    width: 50,
-    height: 50,
-
-    decoration: BoxDecoration(
-      color: Colors.grey[300]!,
-      borderRadius: BorderRadius.circular(8),
-    ),
-  );
 
   Container textBox(String text) => Container(
     width: 50,
@@ -139,6 +118,45 @@ class _SeatPageState extends State<SeatPage> {
         SizedBox(width: 4),
         Text(string),
       ],
+    );
+  }
+
+  Row row(int rowNum) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        seat(rowNum, 1),
+        SizedBox(width: 4),
+        seat(rowNum, 2),
+        SizedBox(width: 4),
+        textBox('$rowNum'),
+        SizedBox(width: 4),
+        seat(rowNum, 3),
+        SizedBox(width: 4),
+        seat(rowNum, 4),
+      ],
+    );
+  }
+
+  Widget seat(int rowNum, int colNum) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedRowNum = rowNum;
+          selectedColNum = colNum;
+        });
+      },
+      child: Container(
+        width: 50,
+        height: 50,
+        decoration: BoxDecoration(
+          color:
+              selectedRowNum == rowNum && selectedColNum == colNum
+                  ? Colors.purple
+                  : Colors.grey[300],
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
     );
   }
 

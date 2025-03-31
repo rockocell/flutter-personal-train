@@ -48,6 +48,9 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               width: double.infinity,
               height: 50,
+
+              /// 버튼
+              ///
               child: ElevatedButton(
                 onPressed: () {
                   if (selectedDeparture != null && selectedArrival != null) {
