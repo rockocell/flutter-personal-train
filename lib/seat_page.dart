@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
 
-class SeatPage extends StatelessWidget {
+class SeatPage extends StatefulWidget {
+  final String selectedDeparture;
+  final String selectedArrival;
+
+  const SeatPage({
+    super.key,
+    required this.selectedDeparture,
+    required this.selectedArrival,
+  });
+  @override
+  State<SeatPage> createState() => _SeatPageState();
+}
+
+class _SeatPageState extends State<SeatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,11 +31,9 @@ class SeatPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              selectedStation('수서'),
-              SizedBox(width: 50),
+              selectedStation(widget.selectedDeparture),
               Icon(Icons.arrow_circle_right_outlined, size: 30),
-              SizedBox(width: 50),
-              selectedStation('부산'),
+              selectedStation(widget.selectedArrival),
             ],
           ), // 출발역 -> 도착역 표시
           Row(
@@ -34,46 +45,37 @@ class SeatPage extends StatelessWidget {
             ],
           ),
           Expanded(
-            child: ListView(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    textBox('A'),
-                    SizedBox(width: 4),
-                    textBox('B'),
-                    SizedBox(width: 4),
-                    textBox(''),
-                    SizedBox(width: 4),
-                    textBox('C'),
-                    SizedBox(width: 4),
-                    textBox('D'),
-                  ],
-                ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: ListView(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      textBox('A'),
+                      SizedBox(width: 4),
+                      textBox('B'),
+                      SizedBox(width: 4),
+                      textBox(''),
+                      SizedBox(width: 4),
+                      textBox('C'),
+                      SizedBox(width: 4),
+                      textBox('D'),
+                    ],
+                  ),
 
-                seatBoxRow(1),
-                SizedBox(height: 8),
-                seatBoxRow(2),
-                SizedBox(height: 8),
-                seatBoxRow(3),
-                SizedBox(height: 8),
-                seatBoxRow(4),
-                SizedBox(height: 8),
-                seatBoxRow(5),
-                SizedBox(height: 8),
-                seatBoxRow(6),
-                SizedBox(height: 8),
-                seatBoxRow(7),
-                SizedBox(height: 8),
-                seatBoxRow(8),
-                SizedBox(height: 8),
-                seatBoxRow(9),
-                SizedBox(height: 8),
-                seatBoxRow(10),
-                SizedBox(height: 8),
-                seatBoxRow(11),
-                SizedBox(height: 8),
-              ],
+                  ...List.generate(20, (index) {
+                    int seatNum = index + 1;
+                    return Padding(
+                      padding:
+                          seatNum != 20
+                              ? EdgeInsets.only(bottom: 8)
+                              : EdgeInsets.only(),
+                      child: seatBoxRow(seatNum),
+                    );
+                  }),
+                ],
+              ),
             ),
           ),
           Padding(
@@ -140,13 +142,17 @@ class SeatPage extends StatelessWidget {
     );
   }
 
-  Text selectedStation(String stationName) {
-    return Text(
-      stationName,
-      style: TextStyle(
-        fontSize: 30,
-        fontWeight: FontWeight.bold,
-        color: Colors.purple,
+  Expanded selectedStation(String stationName) {
+    return Expanded(
+      child: Center(
+        child: Text(
+          stationName,
+          style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            color: Colors.purple,
+          ),
+        ),
       ),
     );
   }

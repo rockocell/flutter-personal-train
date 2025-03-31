@@ -53,7 +53,13 @@ class _HomePageState extends State<HomePage> {
                   if (selectedDeparture != null && selectedArrival != null) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SeatPage()),
+                      MaterialPageRoute(
+                        builder:
+                            (context) => SeatPage(
+                              selectedDeparture: selectedDeparture!,
+                              selectedArrival: selectedArrival!,
+                            ),
+                      ),
                     );
                   }
                 },
