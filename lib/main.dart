@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_train_seat_app/home_page.dart';
-import 'package:flutter_train_seat_app/seat_page.dart';
-import 'package:flutter_train_seat_app/station_list_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,9 +25,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      // home: HomePage(),
-      // home: StationListPage(),
-      home: SeatPage(),
+      home: HomePage(),
     );
   }
 }
