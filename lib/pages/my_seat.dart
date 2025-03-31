@@ -22,7 +22,89 @@ class MySeat extends StatelessWidget {
         ),
         title: Text('예매 확인'),
       ),
-      body: ListView(children: [Column()]),
+      body: ListView(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              textBox('A'),
+              SizedBox(width: 4),
+              textBox('B'),
+              SizedBox(width: 4),
+              textBox(''),
+              SizedBox(width: 4),
+              textBox('C'),
+              SizedBox(width: 4),
+              textBox('D'),
+            ],
+          ),
+          ...List.generate(20, (index) {
+            int rowNum = index + 1;
+            return Padding(
+              padding:
+                  rowNum != 20
+                      ? const EdgeInsets.only(bottom: 8)
+                      : EdgeInsets.zero,
+              child: row(context, rowNum),
+            );
+          }),
+        ],
+      ),
+    );
+  }
+
+  Container textBox(String text) => Container(
+    width: 50,
+    height: 50,
+    alignment: Alignment.center,
+    child: Text(text, style: TextStyle(fontSize: 18)),
+  );
+
+  Row seatStateBox(Color color, String string) {
+    return Row(
+      children: [
+        Container(
+          width: 24,
+          height: 24,
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+        SizedBox(width: 4),
+        Text(string),
+      ],
+    );
+  }
+
+  Row row(BuildContext context, int rowNum) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        seat(context, rowNum, 'A'),
+        SizedBox(width: 4),
+        seat(context, rowNum, 'B'),
+        SizedBox(width: 4),
+        textBox('$rowNum'),
+        SizedBox(width: 4),
+        seat(context, rowNum, 'C'),
+        SizedBox(width: 4),
+        seat(context, rowNum, 'D'),
+      ],
+    );
+  }
+
+  Widget seat(BuildContext context, int rowNum, String colStr) {
+    return Container(
+      width: 50,
+      height: 50,
+      decoration: BoxDecoration(
+        color:
+            selectedRowNum == rowNum && selectedColStr == colStr
+                ? Colors.purple
+                : Theme.of(context).colorScheme.secondaryContainer,
+        borderRadius: BorderRadius.circular(8),
+      ),
     );
   }
 }
