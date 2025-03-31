@@ -46,7 +46,10 @@ class _SeatPageState extends State<SeatPage> {
             children: [
               seatStateBox(Colors.purple, '선택됨'),
               SizedBox(width: 20),
-              seatStateBox(Colors.grey[300]!, '선택안됨'),
+              seatStateBox(
+                Theme.of(context).colorScheme.secondaryContainer,
+                '선택안됨',
+              ),
             ],
           ),
           Expanded(
@@ -185,7 +188,7 @@ class _SeatPageState extends State<SeatPage> {
           color:
               selectedRowNum == rowNum && selectedColStr == colStr
                   ? Colors.purple
-                  : Colors.grey[300],
+                  : Theme.of(context).colorScheme.secondaryContainer,
           borderRadius: BorderRadius.circular(8),
         ),
       ),

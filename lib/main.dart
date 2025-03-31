@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_train_seat_app/home_page.dart';
+import 'package:flutter_train_seat_app/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,20 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-            textStyle: WidgetStateProperty.all(
-              TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            shape: WidgetStateProperty.all(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            ),
-            backgroundColor: WidgetStatePropertyAll(Colors.purple),
-            foregroundColor: WidgetStatePropertyAll(Colors.white),
-          ),
-        ),
-      ),
+      themeMode: ThemeMode.light,
+      theme: lightTheme,
+      darkTheme: darkTheme,
       home: HomePage(),
     );
   }
