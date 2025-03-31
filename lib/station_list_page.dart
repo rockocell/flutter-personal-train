@@ -3,11 +3,31 @@ import 'package:flutter_train_seat_app/station_data.dart';
 
 class StationListPage extends StatelessWidget {
   final String title;
+  final String? selectedDeparture;
+  final String? selectedArrival;
 
-  const StationListPage({super.key, required this.title});
+  const StationListPage({
+    super.key,
+    required this.title,
+    required this.selectedDeparture,
+    required this.selectedArrival,
+  });
 
   @override
   Widget build(BuildContext context) {
+    /// selectedArrival or selectedDeparture 이 null인지 아닌지에 따라 필터링된 리스트 생성
+    /// 해당사항 없는 경우 전체 리스트를 그대로 필터링된 리스트에 할당
+    ///
+    List<String> filteredList =
+        stationList.where((station) {
+          if (title == '출발역' && selectedArrival != null) {
+            return station != selectedArrival;
+          } else if (title == '도착역' && selectedDeparture != null) {
+            return station != selectedDeparture;
+          }
+          return true;
+        }).toList();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -20,9 +40,9 @@ class StationListPage extends StatelessWidget {
       ),
       body: Column(
         children:
-            stationList
+            filteredList
                 .map((station) => stationItem(station, context))
-                .toList(),
+                .toList(), //filteredList의 요소를 가져와 레이아웃 구성
       ),
     );
   }
