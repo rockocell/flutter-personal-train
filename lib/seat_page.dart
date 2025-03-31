@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 
 class SeatPage extends StatelessWidget {
   @override
-  Widget build(Object context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('좌석 선택'),
         leading: IconButton(
           icon: const Icon(Icons.navigate_before),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
       body: Column(
