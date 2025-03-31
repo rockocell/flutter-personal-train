@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_train_seat_app/show_snack_bar.dart';
 
 class SeatPage extends StatefulWidget {
   final String selectedDeparture;
@@ -120,6 +121,10 @@ class _SeatPageState extends State<SeatPage> {
                           ],
                         );
                       },
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      showSnackBar('좌석을 선택해 주세요.', bottomMargin: 60),
                     );
                   }
                 },

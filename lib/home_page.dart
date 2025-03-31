@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_train_seat_app/station_list_page.dart';
 import 'package:flutter_train_seat_app/seat_page.dart';
+import 'package:flutter_train_seat_app/show_snack_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -63,6 +64,10 @@ class _HomePageState extends State<HomePage> {
                               selectedArrival: selectedArrival!,
                             ),
                       ),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      showSnackBar('출발역과 도착역을 모두 선택해 주세요.', bottomMargin: 100),
                     );
                   }
                 },
