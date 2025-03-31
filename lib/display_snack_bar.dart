@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-SnackBar showSnackBar(String guide, {required double bottomMargin}) {
+SnackBar displaySnackBar(String guide, {required double bottomMargin}) {
   return SnackBar(
     content: Text(guide, textAlign: TextAlign.center),
     duration: Duration(seconds: 2),

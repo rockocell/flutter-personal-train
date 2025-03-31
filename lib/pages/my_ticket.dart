@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_train_seat_app/display_station_name.dart';
 import 'package:flutter_train_seat_app/pages/home_page.dart';
+import 'package:flutter_train_seat_app/pages/my_seat.dart';
 
 class MyTicket extends StatelessWidget {
   final String? selectedDeparture;
@@ -93,7 +94,21 @@ class MyTicket extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               height: 50,
-              child: ElevatedButton(onPressed: () {}, child: Text('좌석 위치 확인')),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder:
+                          (context) => MySeat(
+                            selectedRowNum: selectedRowNum,
+                            selectedColStr: selectedColStr,
+                          ),
+                    ),
+                  );
+                },
+                child: Text('좌석 위치 확인'),
+              ),
             ),
           ],
         ),
