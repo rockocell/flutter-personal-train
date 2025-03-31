@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_train_seat_app/station_list_page.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -21,7 +23,6 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
 
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
               width: double.infinity,
@@ -33,14 +34,12 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  selectStation('출발역', selectedDeparture),
-                  SizedBox(width: 40),
+                  Expanded(child: selectStation('출발역', selectedDeparture)),
                   SizedBox(
                     height: 40,
                     child: VerticalDivider(color: Colors.grey, thickness: 2.0),
                   ),
-                  SizedBox(width: 40),
-                  selectStation('도착역', selectedDeparture),
+                  Expanded(child: selectStation('도착역', selectedArrival)),
                 ],
               ),
             ),
