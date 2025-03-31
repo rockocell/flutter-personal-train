@@ -17,7 +17,7 @@ class SeatPage extends StatefulWidget {
 
 class _SeatPageState extends State<SeatPage> {
   int? selectedRowNum;
-  int? selectedColNum;
+  String? selectedColStr;
 
   @override
   Widget build(BuildContext context) {
@@ -92,13 +92,13 @@ class _SeatPageState extends State<SeatPage> {
               ///
               child: ElevatedButton(
                 onPressed: () {
-                  if (selectedRowNum != null && selectedColNum != null) {
+                  if (selectedRowNum != null && selectedColStr != null) {
                     showCupertinoDialog(
                       context: context,
                       builder: (context) {
                         return CupertinoAlertDialog(
                           title: Text('예매 하시겠습니까?'),
-                          content: Text('좌석 $selectedRowNum - $selectedColNum'),
+                          content: Text('좌석 $selectedRowNum - $selectedColStr'),
                           actions: [
                             CupertinoDialogAction(
                               isDestructiveAction: true,
@@ -157,25 +157,25 @@ class _SeatPageState extends State<SeatPage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        seat(rowNum, 1),
+        seat(rowNum, 'A'),
         SizedBox(width: 4),
-        seat(rowNum, 2),
+        seat(rowNum, 'B'),
         SizedBox(width: 4),
         textBox('$rowNum'),
         SizedBox(width: 4),
-        seat(rowNum, 3),
+        seat(rowNum, 'C'),
         SizedBox(width: 4),
-        seat(rowNum, 4),
+        seat(rowNum, 'D'),
       ],
     );
   }
 
-  Widget seat(int rowNum, int colNum) {
+  Widget seat(int rowNum, String colStr) {
     return GestureDetector(
       onTap: () {
         setState(() {
           selectedRowNum = rowNum;
-          selectedColNum = colNum;
+          selectedColStr = colStr;
         });
       },
       child: Container(
@@ -183,7 +183,7 @@ class _SeatPageState extends State<SeatPage> {
         height: 50,
         decoration: BoxDecoration(
           color:
-              selectedRowNum == rowNum && selectedColNum == colNum
+              selectedRowNum == rowNum && selectedColStr == colStr
                   ? Colors.purple
                   : Colors.grey[300],
           borderRadius: BorderRadius.circular(8),
