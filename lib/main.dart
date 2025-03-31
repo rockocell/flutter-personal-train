@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_train_seat_app/home_page.dart';
+import 'package:flutter_train_seat_app/pages/home_page.dart';
 import 'package:flutter_train_seat_app/theme.dart';
 
 void main() {
@@ -12,8 +12,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // themeMode: ThemeMode.light,
-      themeMode: ThemeMode.dark, //테마 테스트 코드
+      themeMode: ThemeMode.light,
+      // themeMode: ThemeMode.dark, //테마 테스트 코드
       theme: lightTheme,
       darkTheme: darkTheme,
       home: HomePage(),
