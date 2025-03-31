@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_train_seat_app/pages/my_ticket.dart';
 import 'package:flutter_train_seat_app/show_snack_bar.dart';
 
 class SeatPage extends StatefulWidget {
@@ -114,8 +115,20 @@ class _SeatPageState extends State<SeatPage> {
                             CupertinoDialogAction(
                               child: Text('확인'),
                               onPressed: () {
-                                Navigator.pop(context);
-                                Navigator.pop(context);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder:
+                                        (context) => MyTicket(
+                                          selectedDeparture:
+                                              widget.selectedDeparture,
+                                          selectedArrival:
+                                              widget.selectedArrival,
+                                          selectedRowNum: selectedRowNum,
+                                          selectedColStr: selectedColStr,
+                                        ),
+                                  ),
+                                );
                               },
                             ),
                           ],

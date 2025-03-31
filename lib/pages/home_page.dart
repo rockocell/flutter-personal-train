@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_train_seat_app/pages/station_list_page.dart';
 import 'package:flutter_train_seat_app/pages/seat_page.dart';
 import 'package:flutter_train_seat_app/show_snack_bar.dart';
+import 'package:flutter_train_seat_app/display_station_name.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -105,20 +106,7 @@ class _HomePageState extends State<HomePage> {
           });
         }
       },
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.grey,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Text(selected ?? '선택', style: TextStyle(fontSize: 40)),
-        ],
-      ),
+      child: displayStationName(title: title, selected: selected),
     );
   }
 }
