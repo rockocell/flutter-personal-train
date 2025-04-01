@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_train_seat_app/data/station_data.dart';
+import 'package:flutter_train_seat_app/data/seat_data.dart';
 import 'package:flutter_train_seat_app/pages/my_ticket.dart';
 import 'package:flutter_train_seat_app/widgets/display_snack_bar.dart';
+import 'package:flutter_train_seat_app/data/station_data.dart';
 
 class SeatPage extends StatefulWidget {
   const SeatPage({super.key});
@@ -47,7 +48,7 @@ class _SeatPageState extends State<SeatPage> {
                 '선택안됨',
               ),
             ],
-          ),
+          ), // 선택됨 or 선택안됨 색상 알림
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
@@ -92,6 +93,9 @@ class _SeatPageState extends State<SeatPage> {
               child: ElevatedButton(
                 onPressed: () {
                   if (selectedRowNum != null && selectedColStr != null) {
+                    // null 체크 후 전역변수에 값 전달
+                    selectedRowGlobal = selectedRowNum!;
+                    selectedColGlobal = selectedColStr!;
                     showCupertinoDialog(
                       context: context,
                       builder: (context) {
@@ -112,15 +116,7 @@ class _SeatPageState extends State<SeatPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder:
-                                        (context) => MyTicket(
-                                          selectedDeparture:
-                                              selectedDepartureGlobal,
-                                          selectedArrival:
-                                              selectedArrivalGlobal,
-                                          selectedRowNum: selectedRowNum,
-                                          selectedColStr: selectedColStr,
-                                        ),
+                                    builder: (context) => MyTicket(),
                                   ),
                                 );
                               },

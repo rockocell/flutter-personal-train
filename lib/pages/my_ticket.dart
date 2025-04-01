@@ -1,21 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_train_seat_app/data/seat_data.dart';
+import 'package:flutter_train_seat_app/data/station_data.dart';
 import 'package:flutter_train_seat_app/widgets/display_station_name.dart';
 import 'package:flutter_train_seat_app/pages/home_page.dart';
 import 'package:flutter_train_seat_app/pages/my_seat.dart';
 
 class MyTicket extends StatelessWidget {
-  final String? selectedDeparture;
-  final String? selectedArrival;
-  final int? selectedRowNum;
-  final String? selectedColStr;
-
-  const MyTicket({
-    super.key,
-    required this.selectedDeparture,
-    required this.selectedArrival,
-    required this.selectedRowNum,
-    required this.selectedColStr,
-  });
+  const MyTicket({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +55,7 @@ class MyTicket extends StatelessWidget {
                       children: [
                         displayStationName(
                           title: '출발역',
-                          selected: selectedDeparture,
+                          selected: selectedDepartureGlobal,
                         ),
                         SizedBox(
                           height: 40,
@@ -75,7 +66,7 @@ class MyTicket extends StatelessWidget {
                         ),
                         displayStationName(
                           title: '도착역',
-                          selected: selectedArrival,
+                          selected: selectedArrivalGlobal,
                         ),
                       ],
                     ),
@@ -83,7 +74,7 @@ class MyTicket extends StatelessWidget {
                   SizedBox(
                     height: 40,
                     child: Text(
-                      '좌석위치 $selectedRowNum - $selectedColStr',
+                      '좌석위치 $selectedRowGlobal - $selectedColGlobal',
                       style: TextStyle(fontSize: 20),
                     ),
                   ),
@@ -98,13 +89,7 @@ class MyTicket extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder:
-                          (context) => MySeat(
-                            selectedRowNum: selectedRowNum,
-                            selectedColStr: selectedColStr,
-                          ),
-                    ),
+                    MaterialPageRoute(builder: (context) => MySeat()),
                   );
                 },
                 child: Text('좌석 위치 확인'),

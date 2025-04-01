@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_train_seat_app/data/seat_data.dart';
 
 class MySeat extends StatelessWidget {
-  const MySeat({
-    super.key,
-    required this.selectedRowNum,
-    required this.selectedColStr,
-  });
-
-  final int? selectedRowNum;
-  final String? selectedColStr;
+  const MySeat({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +87,7 @@ class MySeat extends StatelessWidget {
       height: 50,
       decoration: BoxDecoration(
         color:
-            selectedRowNum == rowNum && selectedColStr == colStr
+            selectedRowGlobal == rowNum && selectedColGlobal == colStr
                 ? Colors.purple
                 : Theme.of(context).colorScheme.secondaryContainer,
         borderRadius: BorderRadius.circular(8),
