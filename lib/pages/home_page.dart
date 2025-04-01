@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  SizedBox buttonToSeatPage(BuildContext context) {
+  Widget buttonToSeatPage(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       height: 50,

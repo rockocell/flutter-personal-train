@@ -82,21 +82,25 @@ class MyTicket extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MySeat()),
-                  );
-                },
-                child: Text('좌석 위치 확인'),
-              ),
-            ),
+            buttonToMySeat(context), //ElevatedButton: MySeat로 넘어가기
           ],
         ),
+      ),
+    );
+  }
+
+  Widget buttonToMySeat(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: 50,
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => MySeat()),
+          );
+        },
+        child: Text('좌석 위치 확인'),
       ),
     );
   }
