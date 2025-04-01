@@ -32,9 +32,9 @@ class _SeatPageState extends State<SeatPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              trySelectedStation(() => selectedDepartureGlobal),
+              trySelectedStation(() => selectedDepartureGlobal), // 예외처리
               Icon(Icons.arrow_circle_right_outlined, size: 30),
-              trySelectedStation(() => selectedArrivalGlobal),
+              trySelectedStation(() => selectedArrivalGlobal), // 예외처리
             ],
           ), // 출발역 -> 도착역 표시
           Row(
@@ -121,6 +121,7 @@ class _SeatPageState extends State<SeatPage> {
     );
   }
 
+  // null 값을 처리하지 못하는 selectedStation에 !String 타입의 전역변수를 넣고 오류 처리
   Widget trySelectedStation(String? Function() getStation) {
     try {
       final station = getStation()!;

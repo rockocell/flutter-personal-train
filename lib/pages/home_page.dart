@@ -13,13 +13,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  /// null 체크가 필요하므로 null값 허용하는 지역변수를 우선 사용
-  /// SeatPage로 출발역, 도착역 값 전달할 때만 전역변수 사용
-
-  /*
-  String? selectedDeparture;
-  String? selectedArrival;
-*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
