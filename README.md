@@ -5,15 +5,8 @@ Flutter 앱개발반에서 진행한 세 번째 개인과제 프로젝트입니�
 
 ## Pages
 
-<img src = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcdwgN5%2FbtsM4KJcahF%2FskrIUdD1KdEYx8hGmIGCtK%2Fimg.png" width=220/>
-<img src = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FeVs2au%2FbtsM5Rm1Fz0%2FQnWkoggUjAQzDghOBCssO0%2Fimg.png" width=220/>
-<img src = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FAeYw7%2FbtsM5CKngrL%2FiyT3dO5ZPchtIjPPKsxws1%2Fimg.png" width=220/>
-<br/>
-<img src = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fcj3aSy%2FbtsM2Hz5zm8%2F5kWkcigD9G5z7c1yogIk2k%2Fimg.png" width=220/>
-<img src = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FLXZth%2FbtsM40E10fn%2FVLyWiXuQZUv3nmvLBQBRrk%2Fimg.png" width=220/>
-<img src = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcTytkv%2FbtsM4shoV59%2FbPB4fviadkaX4eITfknK5K%2Fimg.png" width=220/>
-<br/>
-<br/>
+<img src = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FWloFR%2FbtsM5vkzMyF%2FUDvYvxXkUiQLu1KsMv2Ka0%2Fimg.png">
+
 총 5개의 페이지로 구성되어 있으며, 다크 테마를 지원합니다.
 
 ## 구현 범위:
@@ -35,10 +28,8 @@ Flutter 앱개발반에서 진행한 세 번째 개인과제 프로젝트입니�
 ## 추가기능:
 
 ### 1. SnackBar로 사용자 안내 문구 출력
-<img src = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbix58S%2FbtsM44tSqVw%2FIlVhfs1FkLl8hqqgf1Tr20%2Fimg.png" width=220>
-<img src = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbQh45d%2FbtsM3DRDXUr%2Fbnusdae6eioPHBQ3MXIgf1%2Fimg.png" width=220>
-<br/>
-<br/>
+
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F0FAU9%2FbtsM51pHMjY%2FrSI8iDiwmLKYRe4u5k0iyk%2Fimg.png">
 
 **[ 설명 ]**
  - ElevatedButton 입력이 있지만 다음 페이지로 이동할 조건을 갖추지 못한 경우 사용자에게 안내 문구를 출력한다.
