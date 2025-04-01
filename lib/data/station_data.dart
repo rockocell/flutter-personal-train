@@ -17,3 +17,6 @@ final List<String> stationList = [
   "울산",
   "부산",
 ];
+
+late String selectedDepartureGlobal;
+late String selectedArrivalGlobal;

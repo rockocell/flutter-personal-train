@@ -1,17 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_train_seat_app/data/station_data.dart';
 import 'package:flutter_train_seat_app/pages/my_ticket.dart';
-import 'package:flutter_train_seat_app/display_snack_bar.dart';
+import 'package:flutter_train_seat_app/widgets/display_snack_bar.dart';
 
 class SeatPage extends StatefulWidget {
-  final String selectedDeparture;
-  final String selectedArrival;
-
-  const SeatPage({
-    super.key,
-    required this.selectedDeparture,
-    required this.selectedArrival,
-  });
+  const SeatPage({super.key});
 
   @override
   State<SeatPage> createState() => _SeatPageState();
@@ -38,9 +32,9 @@ class _SeatPageState extends State<SeatPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              selectedStation(widget.selectedDeparture),
+              selectedStation(selectedDepartureGlobal),
               Icon(Icons.arrow_circle_right_outlined, size: 30),
-              selectedStation(widget.selectedArrival),
+              selectedStation(selectedArrivalGlobal),
             ],
           ), // 출발역 -> 도착역 표시
           Row(
@@ -121,9 +115,9 @@ class _SeatPageState extends State<SeatPage> {
                                     builder:
                                         (context) => MyTicket(
                                           selectedDeparture:
-                                              widget.selectedDeparture,
+                                              selectedDepartureGlobal,
                                           selectedArrival:
-                                              widget.selectedArrival,
+                                              selectedArrivalGlobal,
                                           selectedRowNum: selectedRowNum,
                                           selectedColStr: selectedColStr,
                                         ),

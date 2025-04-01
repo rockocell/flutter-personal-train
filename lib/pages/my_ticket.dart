@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_train_seat_app/display_station_name.dart';
+import 'package:flutter_train_seat_app/widgets/display_station_name.dart';
 import 'package:flutter_train_seat_app/pages/home_page.dart';
 import 'package:flutter_train_seat_app/pages/my_seat.dart';
 

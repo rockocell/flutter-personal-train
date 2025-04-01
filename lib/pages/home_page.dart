@@ -3,6 +3,7 @@ import 'package:flutter_train_seat_app/pages/station_list_page.dart';
 import 'package:flutter_train_seat_app/pages/seat_page.dart';
 import 'package:flutter_train_seat_app/widgets/display_snack_bar.dart';
 import 'package:flutter_train_seat_app/widgets/display_station_name.dart';
+import 'package:flutter_train_seat_app/data/station_data.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,6 +13,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  /// null 체크가 필요하므로 null값 허용하는 지역변수를 우선 사용
+  /// SeatPage로 출발역, 도착역 값 전달할 때만 전역변수 사용
+  ///
   String? selectedDeparture;
   String? selectedArrival;
 
@@ -47,44 +51,16 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SizedBox(height: 20),
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-
-              /// 버튼
-              ///
-              child: ElevatedButton(
-                onPressed: () {
-                  if (selectedDeparture != null && selectedArrival != null) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder:
-                            (context) => SeatPage(
-                              selectedDeparture: selectedDeparture!,
-                              selectedArrival: selectedArrival!,
-                            ),
-                      ),
-                    );
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      displaySnackBar(
-                        '출발역과 도착역을 모두 선택해 주세요.',
-                        bottomMargin: 100,
-                      ),
-                    );
-                  }
-                },
-                child: Text('좌석 선택'),
-              ),
-            ),
+            buttonToSeatPage(
+              context,
+            ), //ElevatedButton: 출발역, 도착역 null 체크, SeatPage로 넘어가기
           ],
         ),
       ),
     );
   }
 
-  /// 도착역, 출발역 col 레이아웃에 제스처 입혀 사용
+  /// 이미 정의된 도착역, 출발역 레이아웃에 제스처 입혀 사용
   ///
   Widget selectStation(String title, String? selected) {
     return GestureDetector(
@@ -112,6 +88,32 @@ class _HomePageState extends State<HomePage> {
         }
       },
       child: displayStationName(title: title, selected: selected),
+    );
+  }
+
+  SizedBox buttonToSeatPage(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: 50,
+      child: ElevatedButton(
+        onPressed: () {
+          if (selectedDeparture != null && selectedArrival != null) {
+            // null 체크 후 전역변수에 해당 값 전달
+            selectedDepartureGlobal = selectedDeparture!;
+            selectedArrivalGlobal = selectedArrival!;
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SeatPage()),
+            );
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              displaySnackBar('출발역과 도착역을 모두 선택해 주세요.', bottomMargin: 100),
+            );
+          }
+        },
+        child: Text('좌석 선택'),
+      ),
     );
   }
 }
