@@ -18,5 +18,5 @@ final List<String> stationList = [
   "부산",
 ];
 
-late String selectedDepartureGlobal;
-late String selectedArrivalGlobal;
+String? selectedDepartureGlobal;
+String? selectedArrivalGlobal;

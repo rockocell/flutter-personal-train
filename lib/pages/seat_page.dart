@@ -32,9 +32,9 @@ class _SeatPageState extends State<SeatPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              selectedStation(selectedDepartureGlobal),
+              trySelectedStation(() => selectedDepartureGlobal),
               Icon(Icons.arrow_circle_right_outlined, size: 30),
-              selectedStation(selectedArrivalGlobal),
+              trySelectedStation(() => selectedArrivalGlobal),
             ],
           ), // 출발역 -> 도착역 표시
           Row(
@@ -119,6 +119,15 @@ class _SeatPageState extends State<SeatPage> {
         ),
       ),
     );
+  }
+
+  Widget trySelectedStation(String? Function() getStation) {
+    try {
+      final station = getStation()!;
+      return selectedStation(station);
+    } catch (e) {
+      return displaySnackBar('오류 발생. 홈으로 돌아가십시오.', bottomMargin: 60);
+    }
   }
 
   // widgets_seats.dart의 seat 위젯에 터치로 사용자 입력 받는 기능 추가

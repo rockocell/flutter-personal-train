@@ -15,10 +15,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   /// null 체크가 필요하므로 null값 허용하는 지역변수를 우선 사용
   /// SeatPage로 출발역, 도착역 값 전달할 때만 전역변수 사용
-  ///
+
+  /*
   String? selectedDeparture;
   String? selectedArrival;
-
+*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,12 +42,14 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(child: selectStation('출발역', selectedDeparture)),
+                  Expanded(
+                    child: selectStation('출발역', selectedDepartureGlobal),
+                  ),
                   SizedBox(
                     height: 40,
                     child: VerticalDivider(color: Colors.grey, thickness: 2.0),
                   ),
-                  Expanded(child: selectStation('도착역', selectedArrival)),
+                  Expanded(child: selectStation('도착역', selectedArrivalGlobal)),
                 ],
               ),
             ),
@@ -71,8 +74,8 @@ class _HomePageState extends State<HomePage> {
             builder:
                 (context) => StationListPage(
                   title: title,
-                  selectedArrival: selectedArrival,
-                  selectedDeparture: selectedDeparture,
+                  selectedArrival: selectedArrivalGlobal,
+                  selectedDeparture: selectedDepartureGlobal,
                 ),
           ),
         );
@@ -80,9 +83,9 @@ class _HomePageState extends State<HomePage> {
         if (selected != null) {
           setState(() {
             if (title == '출발역') {
-              selectedDeparture = selected;
+              selectedDepartureGlobal = selected;
             } else {
-              selectedArrival = selected;
+              selectedArrivalGlobal = selected;
             }
           });
         }
@@ -98,11 +101,8 @@ class _HomePageState extends State<HomePage> {
       height: 50,
       child: ElevatedButton(
         onPressed: () {
-          if (selectedDeparture != null && selectedArrival != null) {
-            // null 체크 후 전역변수에 해당 값 전달
-            selectedDepartureGlobal = selectedDeparture!;
-            selectedArrivalGlobal = selectedArrival!;
-
+          if (selectedDepartureGlobal != null &&
+              selectedArrivalGlobal != null) {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => SeatPage()),
