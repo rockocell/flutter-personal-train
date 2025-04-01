@@ -3,5 +3,5 @@
 /// selectedRowGlobal: 유저가 선택한 좌석 row
 /// selectedColGlobal: 유저가 선택한 좌석 Col
 
-late int selectedRowGlobal;
-late String selectedColGlobal;
+int? selectedRowGlobal;
+String? selectedColGlobal;

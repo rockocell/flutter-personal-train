@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_train_seat_app/data/seat_data.dart';
 import 'package:flutter_train_seat_app/pages/my_ticket.dart';
-import 'package:flutter_train_seat_app/widgets/display_snack_bar.dart';
+
 import 'package:flutter_train_seat_app/data/station_data.dart';
+import 'package:flutter_train_seat_app/widgets/display_snack_bar.dart';
+import 'package:flutter_train_seat_app/widgets/widgets_seats.dart';
 
 class SeatPage extends StatefulWidget {
   const SeatPage({super.key});
@@ -13,9 +15,6 @@ class SeatPage extends StatefulWidget {
 }
 
 class _SeatPageState extends State<SeatPage> {
-  int? selectedRowNum;
-  String? selectedColStr;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,21 +86,17 @@ class _SeatPageState extends State<SeatPage> {
             child: SizedBox(
               height: 50,
               width: double.infinity,
-
-              /// 버튼
-              ///
               child: ElevatedButton(
                 onPressed: () {
-                  if (selectedRowNum != null && selectedColStr != null) {
-                    // null 체크 후 전역변수에 값 전달
-                    selectedRowGlobal = selectedRowNum!;
-                    selectedColGlobal = selectedColStr!;
+                  if (selectedRowGlobal != null && selectedColGlobal != null) {
                     showCupertinoDialog(
                       context: context,
                       builder: (context) {
                         return CupertinoAlertDialog(
                           title: Text('예매 하시겠습니까?'),
-                          content: Text('좌석 $selectedRowNum - $selectedColStr'),
+                          content: Text(
+                            '좌석 $selectedRowGlobal - $selectedColGlobal',
+                          ),
                           actions: [
                             CupertinoDialogAction(
                               isDestructiveAction: true,
@@ -140,13 +135,6 @@ class _SeatPageState extends State<SeatPage> {
     );
   }
 
-  Container textBox(String text) => Container(
-    width: 50,
-    height: 50,
-    alignment: Alignment.center,
-    child: Text(text, style: TextStyle(fontSize: 18)),
-  );
-
   Row seatStateBox(Color color, String string) {
     return Row(
       children: [
@@ -164,45 +152,6 @@ class _SeatPageState extends State<SeatPage> {
     );
   }
 
-  Row row(int rowNum) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        seat(rowNum, 'A'),
-        SizedBox(width: 4),
-        seat(rowNum, 'B'),
-        SizedBox(width: 4),
-        textBox('$rowNum'),
-        SizedBox(width: 4),
-        seat(rowNum, 'C'),
-        SizedBox(width: 4),
-        seat(rowNum, 'D'),
-      ],
-    );
-  }
-
-  Widget seat(int rowNum, String colStr) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          selectedRowNum = rowNum;
-          selectedColStr = colStr;
-        });
-      },
-      child: Container(
-        width: 50,
-        height: 50,
-        decoration: BoxDecoration(
-          color:
-              selectedRowNum == rowNum && selectedColStr == colStr
-                  ? Colors.purple
-                  : Theme.of(context).colorScheme.secondaryContainer,
-          borderRadius: BorderRadius.circular(8),
-        ),
-      ),
-    );
-  }
-
   Expanded selectedStation(String stationName) {
     return Expanded(
       child: Center(
@@ -215,6 +164,36 @@ class _SeatPageState extends State<SeatPage> {
           ),
         ),
       ),
+    );
+  }
+
+  // widgets_seats.dart의 seat 위젯에 터치로 사용자 입력 받는 기능 추가
+  Widget touchableSeat(int rowNum, String colStr) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedRowGlobal = rowNum;
+          selectedColGlobal = colStr;
+        });
+      },
+      child: seat(context, rowNum, colStr),
+    );
+  }
+
+  Widget row(int rowNum) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        touchableSeat(rowNum, 'A'),
+        SizedBox(width: 4),
+        touchableSeat(rowNum, 'B'),
+        SizedBox(width: 4),
+        textBox('$rowNum'),
+        SizedBox(width: 4),
+        touchableSeat(rowNum, 'C'),
+        SizedBox(width: 4),
+        touchableSeat(rowNum, 'D'),
+      ],
     );
   }
 }
