@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_train_seat_app/pages/station_list_page.dart';
 import 'package:flutter_train_seat_app/pages/seat_page.dart';
-import 'package:flutter_train_seat_app/display_snack_bar.dart';
-import 'package:flutter_train_seat_app/display_station_name.dart';
+import 'package:flutter_train_seat_app/widgets/display_snack_bar.dart';
+import 'package:flutter_train_seat_app/widgets/display_station_name.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -84,6 +84,8 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  /// 도착역, 출발역 col 레이아웃에 제스처 입혀 사용
+  ///
   Widget selectStation(String title, String? selected) {
     return GestureDetector(
       onTap: () async {

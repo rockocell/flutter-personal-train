@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_train_seat_app/station_data.dart';
+import 'package:flutter_train_seat_app/data/station_data.dart';
 
 class StationListPage extends StatelessWidget {
   final String title;

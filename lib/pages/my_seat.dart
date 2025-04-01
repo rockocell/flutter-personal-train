@@ -53,13 +53,6 @@ class MySeat extends StatelessWidget {
     );
   }
 
-  Container textBox(String text) => Container(
-    width: 50,
-    height: 50,
-    alignment: Alignment.center,
-    child: Text(text, style: TextStyle(fontSize: 18)),
-  );
-
   Row seatStateBox(Color color, String string) {
     return Row(
       children: [
@@ -107,4 +100,11 @@ class MySeat extends StatelessWidget {
       ),
     );
   }
+
+  Container textBox(String text) => Container(
+    width: 50,
+    height: 50,
+    alignment: Alignment.center,
+    child: Text(text, style: TextStyle(fontSize: 18)),
+  );
 }
