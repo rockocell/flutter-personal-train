@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  /// 이미 정의된 도착역, 출발역 레이아웃에 제스처 입혀 사용
+  /// displayStationName에 제스처 입혀 사용
   ///
   Widget selectStation(String title, String? selected) {
     return GestureDetector(
@@ -91,6 +91,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  //하단 ElevatedButton
   Widget buttonToSeatPage(BuildContext context) {
     return SizedBox(
       width: double.infinity,

@@ -5,7 +5,7 @@ import 'package:flutter_train_seat_app/pages/my_ticket.dart';
 
 import 'package:flutter_train_seat_app/data/station_data.dart';
 import 'package:flutter_train_seat_app/widgets/display_snack_bar.dart';
-import 'package:flutter_train_seat_app/widgets/widgets_seats.dart';
+import 'package:flutter_train_seat_app/widgets/widgets_seats.dart'; //seat, textBox 임포트
 
 class SeatPage extends StatefulWidget {
   const SeatPage({super.key});
@@ -89,54 +89,6 @@ class _SeatPageState extends State<SeatPage> {
     );
   }
 
-  Widget buttonToCupertinoDialog(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
-      child: SizedBox(
-        height: 50,
-        width: double.infinity,
-        child: ElevatedButton(
-          onPressed: () {
-            if (selectedRowGlobal != null && selectedColGlobal != null) {
-              showCupertinoDialog(
-                context: context,
-                builder: (context) {
-                  return CupertinoAlertDialog(
-                    title: Text('예매 하시겠습니까?'),
-                    content: Text('좌석 $selectedRowGlobal - $selectedColGlobal'),
-                    actions: [
-                      CupertinoDialogAction(
-                        isDestructiveAction: true,
-                        child: Text('취소'),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                      CupertinoDialogAction(
-                        child: Text('확인'),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => MyTicket()),
-                          );
-                        },
-                      ),
-                    ],
-                  );
-                },
-              );
-            } else {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(displaySnackBar('좌석을 선택해 주세요.', bottomMargin: 60));
-            }
-          },
-          child: Text('예매 하기'),
-        ),
-      ),
-    );
-  }
-
   Row seatStateBox(Color color, String string) {
     return Row(
       children: [
@@ -196,6 +148,55 @@ class _SeatPageState extends State<SeatPage> {
         SizedBox(width: 4),
         touchableSeat(rowNum, 'D'),
       ],
+    );
+  }
+
+  //하단 ElevatedButton
+  Widget buttonToCupertinoDialog(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
+      child: SizedBox(
+        height: 50,
+        width: double.infinity,
+        child: ElevatedButton(
+          onPressed: () {
+            if (selectedRowGlobal != null && selectedColGlobal != null) {
+              showCupertinoDialog(
+                context: context,
+                builder: (context) {
+                  return CupertinoAlertDialog(
+                    title: Text('예매 하시겠습니까?'),
+                    content: Text('좌석 $selectedRowGlobal - $selectedColGlobal'),
+                    actions: [
+                      CupertinoDialogAction(
+                        isDestructiveAction: true,
+                        child: Text('취소'),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                      CupertinoDialogAction(
+                        child: Text('확인'),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => MyTicket()),
+                          );
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
+            } else {
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(displaySnackBar('좌석을 선택해 주세요.', bottomMargin: 60));
+            }
+          },
+          child: Text('예매 하기'),
+        ),
+      ),
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_train_seat_app/data/seat_data.dart';
+import 'package:flutter_train_seat_app/widgets/widgets_seats.dart'; // seat, textBox 임포트
 
 class MySeat extends StatelessWidget {
   const MySeat({super.key});
@@ -47,23 +47,6 @@ class MySeat extends StatelessWidget {
     );
   }
 
-  Row seatStateBox(Color color, String string) {
-    return Row(
-      children: [
-        Container(
-          width: 24,
-          height: 24,
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(8),
-          ),
-        ),
-        SizedBox(width: 4),
-        Text(string),
-      ],
-    );
-  }
-
   Row row(BuildContext context, int rowNum) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -80,25 +63,4 @@ class MySeat extends StatelessWidget {
       ],
     );
   }
-
-  Widget seat(BuildContext context, int rowNum, String colStr) {
-    return Container(
-      width: 50,
-      height: 50,
-      decoration: BoxDecoration(
-        color:
-            selectedRowGlobal == rowNum && selectedColGlobal == colStr
-                ? Colors.purple
-                : Theme.of(context).colorScheme.secondaryContainer,
-        borderRadius: BorderRadius.circular(8),
-      ),
-    );
-  }
-
-  Container textBox(String text) => Container(
-    width: 50,
-    height: 50,
-    alignment: Alignment.center,
-    child: Text(text, style: TextStyle(fontSize: 18)),
-  );
 }
